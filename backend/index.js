@@ -12,6 +12,13 @@ app.get("/", (req, res) => {
 
 });
 
+app.get("/home", (req, res) => {
+  res.send("Welcome home");
+});
+
+app.get('/Not-Found', (req, res, err) => {
+  res.send(err.message);
+});
 
 const PORT = 3000;
 
