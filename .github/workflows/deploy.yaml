@@ -1,0 +1,7 @@
+name: Deploy Deploymate to netlify
+
+on:
+  push:
+    branches:
+      - main
+      
