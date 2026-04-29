@@ -1,6 +1,10 @@
 import express from "express";
+import connectDB from "./Models/db.js";
 
 const app = express();
+
+// Connect to MongoDB
+connectDB();
 
 // middleware
 app.use(express.json());
