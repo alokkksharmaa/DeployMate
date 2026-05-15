@@ -13,7 +13,6 @@ app.use(express.json());
 // Routes
 app.get("/", (req, res) => {
   res.send("Hello world");
-
 });
 
 app.get("/home", (req, res) => {

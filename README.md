@@ -3,12 +3,6 @@
   # 🚀 DeployMate
   
   **Zero-Downtime Deployment Orchestration Platform**
-  
-  [![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](https://opensource.org/licenses/MIT)
-  [![Node.js](https://img.shields.io/badge/Node.js-v18+-green.svg)](https://nodejs.org/)
-  [![React](https://img.shields.io/badge/React-18.2-61dafb.svg)](https://reactjs.org/)
-  [![Docker](https://img.shields.io/badge/Docker-Enabled-2496ED.svg)](https://www.docker.com/)
-  [![Status](https://img.shields.io/badge/Status-Active_Development-orange.svg)]()
 
   *A cloud-native system designed to automate the build, testing, and deployment lifecycle of containerized applications with unparalleled reliability.*
 
