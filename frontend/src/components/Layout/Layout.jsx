@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link, NavLink } from 'react-router-dom';
 import './Layout.css';
 
 const Layout = ({ children }) => {
@@ -10,7 +11,11 @@ const Layout = ({ children }) => {
         </div>
         <nav className="sidebar-nav">
           <ul>
-            <li className="active"><a href="#">Dashboard</a></li>
+            <li>
+              <NavLink to="/" className={({ isActive }) => (isActive ? 'active' : '')}>
+                Dashboard
+              </NavLink>
+            </li>
             <li><a href="#">Repositories</a></li>
             <li><a href="#">Workers</a></li>
             <li><a href="#">Settings</a></li>

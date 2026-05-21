@@ -1,9 +1,12 @@
-import React from 'react';
+import React, { useState } from 'react';
 import './DeploymentCard.css';
 import StatusBadge from '../StatusBadge/StatusBadge';
 
 const DeploymentCard = ({ deployment }) => {
-  const { repo, branch, commitHash, version, status, timeAgo } = deployment;
+  const [showLogs, setShowLogs] = useState(false);
+  const { repo, branch, commitHash, version, status, createdAt, logs } = deployment;
+
+  const timeAgo = new Date(createdAt).toLocaleString();
 
   return (
     <div className="deployment-card">
@@ -27,8 +30,15 @@ const DeploymentCard = ({ deployment }) => {
       </div>
       <div className="dc-footer">
         <span className="dc-time">{timeAgo}</span>
-        <button className="dc-btn">View Logs</button>
+        <button className="dc-btn" onClick={() => setShowLogs(!showLogs)}>
+          {showLogs ? 'Hide Logs' : 'View Logs'}
+        </button>
       </div>
+      {showLogs && (
+        <div className="dc-logs-container">
+          <pre className="dc-logs">{logs || 'No logs available.'}</pre>
+        </div>
+      )}
     </div>
   );
 };
