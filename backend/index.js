@@ -1,6 +1,9 @@
 import express from "express";
 import connectDB from "./Models/db.js";
 import { createClient } from 'redis';
+import healthRoutes from './routes/healthRoutes.js';
+import webhookRoutes from './routes/webhookRoutes.js';
+import deploymentRoutes from './routes/deploymentRoutes.js';
 
 
 const app = express();
@@ -16,17 +19,9 @@ app.use(express.json());
 
 
 // Routes
-app.get("/", (req, res) => {
-  res.send("Hello world");
-});
-
-app.get("/home", (req, res) => {
-  res.send("Welcome home");
-});
-
-app.get('/Not-Found', (req, res, err) => {
-  res.send(err.message);
-});
+app.use('/api/health', healthRoutes);
+app.use('/api/webhook', webhookRoutes);
+app.use('/api/deployment', deploymentRoutes);
 
 await client.json.set('user:1', '$', {
   name: 'Alice',
