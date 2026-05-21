@@ -1,19 +1,26 @@
-const API_BASE = 'http://localhost:3000/api';
+const BASE_URL = 'http://localhost:3000/api';
 
-export const fetchDeployments = async () => {
-  const response = await fetch(`${API_BASE}/deployments`);
-  if (!response.ok) throw new Error('Failed to fetch deployments');
-  return response.json();
-};
-
-export const fetchDeploymentById = async (id) => {
-  const response = await fetch(`${API_BASE}/deployment/${id}`);
-  if (!response.ok) throw new Error('Failed to fetch deployment');
-  return response.json();
-};
-
-export const fetchDeploymentLogs = async (id) => {
-  const response = await fetch(`${API_BASE}/logs/${id}`);
-  if (!response.ok) throw new Error('Failed to fetch logs');
-  return response.json();
+export const apiClient = {
+  get: async (endpoint) => {
+    const response = await fetch(`${BASE_URL}${endpoint}`);
+    if (!response.ok) {
+      const error = await response.json().catch(() => ({}));
+      throw new Error(error.message || `API Error: ${response.status} ${response.statusText}`);
+    }
+    return response.json();
+  },
+  post: async (endpoint, data) => {
+    const response = await fetch(`${BASE_URL}${endpoint}`, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(data),
+    });
+    if (!response.ok) {
+      const error = await response.json().catch(() => ({}));
+      throw new Error(error.message || `API Error: ${response.status} ${response.statusText}`);
+    }
+    return response.json();
+  },
 };

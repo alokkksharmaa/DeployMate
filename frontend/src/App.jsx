@@ -1,19 +1,28 @@
 import React from 'react';
-import { BrowserRouter, Routes, Route } from 'react-router-dom';
-import Layout from './components/Layout/Layout';
-import Dashboard from './pages/Dashboard/Dashboard';
-import DeploymentDetails from './pages/DeploymentDetails/DeploymentDetails';
+import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom';
+import { AppLayout } from './components/AppLayout';
+import { Dashboard } from './pages/Dashboard';
+import { DeploymentList } from './pages/DeploymentList';
+import { DeploymentDetails } from './pages/DeploymentDetails';
+import { DeploymentLogsViewer } from './pages/DeploymentLogsViewer';
+import { WorkerStatusPanel } from './pages/WorkerStatusPanel';
+import { SystemHealthOverview } from './pages/SystemHealthOverview';
 
 function App() {
   return (
-    <BrowserRouter>
-      <Layout>
-        <Routes>
-          <Route path="/" element={<Dashboard />} />
-          <Route path="/deployment/:id" element={<DeploymentDetails />} />
-        </Routes>
-      </Layout>
-    </BrowserRouter>
+    <Router>
+      <Routes>
+        <Route path="/" element={<AppLayout />}>
+          <Route index element={<Dashboard />} />
+          <Route path="deployments" element={<DeploymentList />} />
+          <Route path="deployment/:id" element={<DeploymentDetails />} />
+          <Route path="deployment/:id/logs" element={<DeploymentLogsViewer />} />
+          <Route path="worker" element={<WorkerStatusPanel />} />
+          <Route path="health" element={<SystemHealthOverview />} />
+          <Route path="*" element={<Navigate to="/" replace />} />
+        </Route>
+      </Routes>
+    </Router>
   );
 }
 
