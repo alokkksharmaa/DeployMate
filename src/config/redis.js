@@ -1,4 +1,4 @@
-const Redis = require('ioredis');
+import redis from 'ioredis';
 
 const redisConnection = process.env.REDIS_URL
   ? new Redis(process.env.REDIS_URL, { maxRetriesPerRequest: null })
